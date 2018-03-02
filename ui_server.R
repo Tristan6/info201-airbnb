@@ -1,3 +1,11 @@
+library('shiny')
+library('ggplot2')
+library('dplyr')
+library('tidyr')
+library('maps')
+library('stringr')
+library('leaflet')
+
 
 my.ui <- fluidPage(
   titlePanel('Group Project'),
