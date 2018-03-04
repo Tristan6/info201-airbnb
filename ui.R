@@ -13,7 +13,7 @@ ui <- fluidPage(
       ),
       
       # br() element to introduce extra vertical spacing.
-      #br(),
+      br(),
       
       # Input: select input for the number of observations year in the data to generate.
       selectInput("year", "Years (from 2015 to 2017:",

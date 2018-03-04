@@ -19,8 +19,8 @@ server <- function(input, output) {
   output$leaf.map <- renderLeaflet({
     
     # leaflet() %>%
-    #   addTiles() %>%  # Add default OpenStreetMap map tiles
-    #   addMarkers(lng=-87.58671, lat=41.78887, popup="some where")
+    # addTiles() %>%  # Add default OpenStreetMap map tiles
+    # addMarkers(lng=-87.6251, lat=41.8786, popup="test")
 
     
     show.frame <- current() %>% filter(overall_satisfaction > 0)
@@ -43,13 +43,6 @@ server <- function(input, output) {
     ggplot(data = show.frame) +
       geom_point(mapping = aes(x = bedrooms, y = price)) +
       labs(title = paste('Lorem ipsum'))
-  })
-  
-  output$leaf.map <- renderLeaflet({
-    
-    leaflet() %>%
-      addTiles() %>%  # Add default OpenStreetMap map tiles
-      addMarkers(lng=-87.6251, lat=41.8786, popup="test")
   })
   
 }
