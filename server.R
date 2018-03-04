@@ -16,15 +16,28 @@ server <- function(input, output) {
       labs(title = paste('Lorem ipsum'))
   })
   
+  output$leaf.map <- renderLeaflet({
+    
+    # leaflet() %>%
+    #   addTiles() %>%  # Add default OpenStreetMap map tiles
+    #   addMarkers(lng=-87.58671, lat=41.78887, popup="some where")
+    
+    show.frame <- current() %>% filter(overall_satisfaction > 0)
+    
+    m <- leaflet(show.frame) %>% addTiles() %>%
+      setView(lng = show.frame[[1, "longitude"]], lat = show.frame[[1, "latitude"]], zoom = 12) %>%
+      addCircles(~longitude, ~latitude, popup=show.frame$host_id, weight = 3, radius=5,
+                 color="#ffa500", stroke = TRUE, fillOpacity = 0.8)
+    
+    m    
+  })
+  
   output$min <- renderPlot({
-    show.frame <- current()
-    
-    show.frame <- filter(show.frame, minstay < 50)
-    
     ggplot(data = show.frame) +
       geom_point(mapping = aes(x = minstay, y = price)) +
       labs(title = paste('Lorem ipsum'))
   })
+
   
   output$bed <- renderPlot({
     show.frame <- current()
