@@ -1,15 +1,16 @@
 library('leaflet')
 
-
 ui <- fluidPage(
   titlePanel('Group Project'),
+  
   sidebarLayout(
     sidebarPanel(
       
       # Input: Select the random distribution type through radio buttons function.
       radioButtons("city", "Cities:",
                    c('Chicago' = 'chicago', 'Miami' = 'miami', 'New York' = 'new_york',
-                     'San Diego' = 'san_diego', 'Seattle' = 'seattle')),
+                     'San Diego' = 'san_diego', 'Seattle' = 'seattle')
+      ),
       
       # br() element to introduce extra vertical spacing.
       #br(),
@@ -17,11 +18,7 @@ ui <- fluidPage(
       # Input: select input for the number of observations year in the data to generate.
       selectInput("year", "Years (from 2015 to 2017:",
                   c('2015'=2015, '2016'=2016, '2017'=2017)
-      ),
-      
-      h4('Airbnb Promotional Video:'),
-      
-      HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/XWUeChVZqgw" frameborder="0" allowfullscreen></iframe>')
+      )
 
     ),
     
@@ -29,9 +26,13 @@ ui <- fluidPage(
     mainPanel(
       tabsetPanel(type = "tabs",
                   tabPanel("map", leafletOutput('leaf.map')),
-                  tabPanel('price.rating', plotOutput('rate'))
+                  tabPanel('price.rating', plotOutput('rate')),
+                  tabPanel("price.min", plotOutput('min')),
+                  tabPanel('price.bed', plotOutput('bed'))
+ 
       )
     )
+    
   )
 )
 

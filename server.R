@@ -34,9 +34,7 @@ server <- function(input, output) {
   })
   
   output$min <- renderPlot({
-    ggplot(data = show.frame) +
-      geom_point(mapping = aes(x = minstay, y = price)) +
-      labs(title = paste('Lorem ipsum'))
+    CreateMinStayScatter(current())
   })
   
   output$bed <- renderPlot({
