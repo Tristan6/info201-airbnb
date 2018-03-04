@@ -1,10 +1,4 @@
-library('shiny')
-library('ggplot2')
-library('dplyr')
-library('tidyr')
-library('maps')
-library('stringr')
-library('leaflet')
+source('pre-processing.R')
 
 server <- function(input, output) {
   
@@ -63,3 +57,5 @@ server <- function(input, output) {
   })
   
 }
+
+shinyServer(server)
