@@ -1,3 +1,5 @@
+library('leaflet')
+
 
 ui <- fluidPage(
   titlePanel('Group Project'),
@@ -15,16 +17,19 @@ ui <- fluidPage(
       # Input: select input for the number of observations year in the data to generate.
       selectInput("year", "Years (from 2015 to 2017:",
                   c('2015'=2015, '2016'=2016, '2017'=2017)
-      )
+      ),
+      
+      h4('Airbnb Promotional Video:'),
+      
+      HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/XWUeChVZqgw" frameborder="0" allowfullscreen></iframe>')
 
     ),
     
     # This is the main page that will appear on the right of the web.
     mainPanel(
       tabsetPanel(type = "tabs",
-                  tabPanel("price.rate", plotOutput("rate"), leafletOutput('leaf.map')),
-                  tabPanel("price.min", plotOutput('min')),
-                  tabPanel('price.bed', plotOutput('bed'))
+                  tabPanel("map", leafletOutput('leaf.map')),
+                  tabPanel('price.rating', plotOutput('rate'))
       )
     )
   )

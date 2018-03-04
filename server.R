@@ -21,6 +21,7 @@ server <- function(input, output) {
     # leaflet() %>%
     #   addTiles() %>%  # Add default OpenStreetMap map tiles
     #   addMarkers(lng=-87.58671, lat=41.78887, popup="some where")
+
     
     show.frame <- current() %>% filter(overall_satisfaction > 0)
     
@@ -37,7 +38,6 @@ server <- function(input, output) {
       geom_point(mapping = aes(x = minstay, y = price)) +
       labs(title = paste('Lorem ipsum'))
   })
-
   
   output$bed <- renderPlot({
     show.frame <- current()
