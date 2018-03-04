@@ -34,3 +34,5 @@ ui <- fluidPage(
     )
   )
 )
+
+shinyUI(ui)
