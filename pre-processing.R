@@ -13,7 +13,7 @@ library('leaflet')
 
 GetFrame <- function(city, year) {
   
-  path.now <- paste0('data', '/', city, '/' , 'airbnb-', year, '.csv')
+  path.now <- paste0('data/', city, '/' , 'airbnb-', year, '.csv')
   
   show.frame <- read.csv(file = path.now, stringsAsFactors = FALSE)
   return(show.frame)

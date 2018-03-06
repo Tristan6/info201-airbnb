@@ -29,10 +29,10 @@ ui <- fluidPage(
     mainPanel(
       tabsetPanel(type = "tabs",
                   tabPanel("map", leafletOutput('leaf.map')),
-                  tabPanel('price.rating', plotOutput('rate'))
+                  tabPanel('price.rating', plotOutput('rate')),
+                  tabPanel('Overall Rating and Average Price', tableOutput('table1'),
+                           tableOutput('table2'))
       )
     )
   )
 )
-
-shinyUI(ui)
