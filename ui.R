@@ -1,39 +1,46 @@
 library('leaflet')
 
-ui <- fluidPage(
-  titlePanel('Group Project'),
-  
-  sidebarLayout(
-    sidebarPanel(
-      
-      # Input: Select the random distribution type through radio buttons function.
-      radioButtons("city", "Cities:",
-                   c('Chicago' = 'chicago', 'Miami' = 'miami', 'New York' = 'new_york',
-                     'San Diego' = 'san_diego', 'Seattle' = 'seattle')
-      ),
-      
-      # br() element to introduce extra vertical spacing.
-      br(),
-      
-      # Input: select input for the number of observations year in the data to generate.
-      selectInput("year", "Years (from 2015 to 2017:",
-                  c('2015'=2015, '2016'=2016, '2017'=2017)
-      )
+ui <- navbarPage("Airbnb Overview",
+                 tabPanel("Home",
+                          sidebarLayout(
+                            sidebarPanel(
+                              radioButtons("plotType", "Plot type",
+                                           c("Scatter"="p", "Line"="l")
+                              )
+                            ),
+                            mainPanel(
+                              plotOutput("plot")
+                            )
+                          )
+                 ),
+                 tabPanel("Summary",
+                          verbatimTextOutput("summary")
+                 ),
+                 
+                 # this is jimmys
+                 navbarMenu("Overall Rating & Price",
+                            tabPanel("Overall Rating & Price",
+                                     #dataTableOutput("table")
+                                     uiOutput("question.one")
+                            ),
+                            tabPanel(""
+                                     
+                            ),
+                            tabPanel(""
+                                     #dataTableOutput("table")
+                            ), 
 
-    ),
-    
-    # This is the main page that will appear on the right of the web.
-    mainPanel(
-      tabsetPanel(type = "tabs",
-                  tabPanel("map", leafletOutput('leaf.map')),
-                  tabPanel('price.rating', plotOutput('rate')),
-                  tabPanel("price.min", plotOutput('min')),
-                  tabPanel('price.bed', plotOutput('bed'))
- 
-      )
-    )
-    
-  )
+                 ),
+                 tablPanel("Inverse Squared Relationship",
+                           plotOutput('scatter'),
+                           uiOutput("question.two")
+                           ),
+                 tabPanel("Room Type & Satisfaction",
+                          uiOutput("question.three")
+                 ),
+                 tabPanel("Minimum Stay and Reviews",
+                          uiOutput("question.four")
+                 )
 )
 
 shinyUI(ui)
