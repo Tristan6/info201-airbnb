@@ -45,6 +45,25 @@ server <- function(input, output) {
       labs(title = paste('Lorem ipsum'))
   })
   
+  output$home <- renderUI({
+    inclRmd("./report.Rmd")
+  })
+  
+  output$question.one <- renderUI({
+    inclRmd("./question1.Rmd")
+  })
+  
+  output$question.two <- renderUI({
+    inclRmd("./question2.Rmd")
+  })
+  
+  output$question.three <- renderUI({
+    inclRmd("./question3.Rmd")
+  })
+  
+  output$question.four <- renderUI({
+    inclRmd("./question4.Rmd")
+  })
 }
 
 shinyServer(server)
