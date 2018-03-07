@@ -1,69 +1,34 @@
 source('pre-processing.R')
+library("markdown")
 
-server <- function(input, output) {
+shinyServer(function(input, output, session) {
   
   current <- reactive({
     return(GetFrame(input$city, input$year))
     
   })
   
-  output$rate <- renderPlot({
-    
-    show.frame <- current()
-    
-    ggplot(data = show.frame) +
-      geom_point(mapping = aes(x = overall_satisfaction, y = price)) +
-      labs(title = paste('Lorem ipsum'))
-  })
+  #### Question 1 space #####
   
-  output$leaf.map <- renderLeaflet({
-    
-    # leaflet() %>%
-    # addTiles() %>%  # Add default OpenStreetMap map tiles
-    # addMarkers(lng=-87.6251, lat=41.8786, popup="test")
+  
 
-    
-    show.frame <- current() %>% filter(overall_satisfaction > 0)
-    
-    m <- leaflet(show.frame) %>% addTiles() %>%
-      setView(lng = show.frame[[1, "longitude"]], lat = show.frame[[1, "latitude"]], zoom = 12) %>%
-      addCircles(~longitude, ~latitude, popup=show.frame$host_id, weight = 3, radius=5,
-                 color="#ffa500", stroke = TRUE, fillOpacity = 0.8)
-    
-    m    
-  })
+  #### Question 1 space #####
   
-  output$min <- renderPlot({
-    CreateMinStayScatter(current())
-  })
+  #### Question 2 space #####
   
-  output$bed <- renderPlot({
-    show.frame <- current()
-    
-    ggplot(data = show.frame) +
-      geom_point(mapping = aes(x = bedrooms, y = price)) +
-      labs(title = paste('Lorem ipsum'))
-  })
   
-  output$home <- renderUI({
-    inclRmd("./report.Rmd")
-  })
   
-  output$question.one <- renderUI({
-    inclRmd("./question1.Rmd")
-  })
+  #### Question 2 space #####
   
-  output$question.two <- renderUI({
-    inclRmd("./question2.Rmd")
-  })
+  #### Question 3 space #####
   
-  output$question.three <- renderUI({
-    inclRmd("./question3.Rmd")
-  })
-  
-  output$question.four <- renderUI({
-    inclRmd("./question4.Rmd")
-  })
-}
 
-shinyServer(server)
+  #### Question 3 space #####
+  
+
+  #### Question 4 space #####
+  
+ 
+  #### Question 4 space #####c
+
+})

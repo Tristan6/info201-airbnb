@@ -2,44 +2,37 @@ library('leaflet')
 
 ui <- navbarPage("Airbnb Overview",
                  tabPanel("Home",
-                          sidebarLayout(
-                            sidebarPanel(
-                              radioButtons("plotType", "Plot type",
-                                           c("Scatter"="p", "Line"="l")
-                              )
-                            ),
-                            mainPanel(
-                              plotOutput("plot")
-                            )
-                          )
-                 ),
-                 tabPanel("Summary",
-                          verbatimTextOutput("summary")
-                 ),
-                 
+                          includeMarkdown("home.md")
+                          ),
+            
                  # this is jimmys
                  navbarMenu("Overall Rating & Price",
-                            tabPanel("Overall Rating & Price",
+                            tabPanel("map"
                                      #dataTableOutput("table")
-                                     uiOutput("question.one")
+                                     #includeMarkdown("question.one.md")
                             ),
-                            tabPanel(""
+                            tabPanel("plot"
                                      
                             ),
-                            tabPanel(""
+                            tabPanel("table"
                                      #dataTableOutput("table")
-                            ), 
+                            ) 
 
                  ),
-                 tablPanel("Inverse Squared Relationship",
-                           plotOutput('scatter'),
-                           uiOutput("question.two")
+                 tabPanel("Inverse Squared Relationship",
+                           
+                           plotOutput('scatter')
+                          #includeMarkdown("question.two.md")
                            ),
-                 tabPanel("Room Type & Satisfaction",
-                          uiOutput("question.three")
+                 tabPanel("Room Type & Satisfaction"
+                          
+                          
+                          #includeMarkdown("question.three.md")
                  ),
-                 tabPanel("Minimum Stay and Reviews",
-                          uiOutput("question.four")
+                 tabPanel("Minimum Stay and Reviews"
+                          
+                          
+                          #includeMarkdown("question.four.md")
                  )
 )
 
