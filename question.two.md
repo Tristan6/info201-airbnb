@@ -13,12 +13,6 @@ a good price for the room they stayed in.
 Jimmy's Youtube Embed:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/XWUeChVZqgw" frameborder="0" allowfullscreen></iframe>
 
-Extra code
- bp<- ggplot(df, aes(x="", y=ratings, fill=ratings))+
-   geom_bar(width = 1, stat = "identity")
- pie <- bp + coord_polar("y", start=0) + scale_fill_brewer(palette="Blues") +
-   theme_minimal()
-
 Adharsh may want this:
 HandleMissingData <- function(year) {
   if(year == 2017) {
@@ -28,14 +22,3 @@ HandleMissingData <- function(year) {
     return("")
   }
 }
-
-More extra code
- Histogram with normal distribution line
-x <- scatter.data$price
-h <- hist(x, breaks = 10, xlab= "Minimum number of days required to make booking",
-        main = "Histogram with Normal Curve")
-
-xfit <- seq(min(x), max(x), length = 40)
-yfit <- dnorm(xfit, mean = mean(x), sd = sd(x))
-yfit <- yfit * diff(h$mids[1:2]) * length(x)
-lines(xfit, yfit, col= "red", lwd = 2)
