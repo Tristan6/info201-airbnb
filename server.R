@@ -1,4 +1,5 @@
 source('pre-processing.R')
+source('inverse-squared.R')
 library("markdown")
 
 shinyServer(function(input, output, session) {
@@ -6,6 +7,10 @@ shinyServer(function(input, output, session) {
   current <- reactive({
     return(GetFrame(input$city, input$year))
     
+  })
+  
+  inverse.squared <- reactive({
+    return(CreateRatingsFactor(current()))
   })
   
   #### Question 1 space #####
@@ -16,7 +21,13 @@ shinyServer(function(input, output, session) {
   
   #### Question 2 space #####
   
+  output$scatter <- renderPlot({
+    CreatePriceReviewScatter(inverse.squared())
+  })
   
+  output$pie <- renderPlot({
+    CreatePieChart(inverse.squared())
+  })
   
   #### Question 2 space #####
   
