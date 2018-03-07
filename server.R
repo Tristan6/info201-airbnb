@@ -49,7 +49,7 @@ server <- function(input, output) {
   
   output$leaf.map <- renderLeaflet({
     
-    show.frame <- current() %>% group_by(neighborhood) %>% top_n(50) %>%
+    show.frame <- current() %>% group_by(neighborhood) %>% top_n(10) %>%
       mutate(popup.info = paste0('<strong>Host id: </strong> ', host_id,
                                  '<br><strong>Neighborhood:</strong> ',neighborhood,
                                  '<br><strong>Overall satisfaction rating</strong>: ', overall_satisfaction,

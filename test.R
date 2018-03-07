@@ -62,3 +62,99 @@ addTiles(map, urlTemplate = "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
          attribution = NULL, layerId = NULL, group = NULL,
          options = tileOptions())
 
+library(markdown)
+
+ui <- navbarPage("Airbnb Overview",
+                 tabPanel("Home",
+                          sidebarLayout(
+                            sidebarPanel(
+                              radioButtons("plotType", "Plot type",
+                                           c("Scatter"="p", "Line"="l")
+                              )
+                            ),
+                            mainPanel(
+                              plotOutput("plot")
+                            )
+                          )
+                 ),
+                 tabPanel("Summary",
+                          verbatimTextOutput("summary")
+                 ),
+                 
+                 navbarMenu("Questions",
+                            tabPanel("Question 1",
+                                     fluidPage(
+                                       sidebarLayout(
+                                         sidebarPanel(
+                                           
+                                           # Input: Select the random distribution type through radio buttons function.
+                                           radioButtons("city", "Cities:",
+                                                        c('Chicago' = 'chicago', 'Miami' = 'miami', 'New York' = 'new_york',
+                                                          'San Diego' = 'san_diego', 'Seattle' = 'seattle')),
+                                           
+                                           # br() element to introduce extra vertical spacing.
+                                           #br(),
+                                           
+                                           # Input: select input for the number of observations year in the data to generate.
+                                           selectInput("year", "Years (from 2015 to 2017:",
+                                                       c('2015'=2015, '2016'=2016, '2017'=2017)
+                                           ),
+                                           
+                                           h4('Airbnb Promotional Video:'),
+                                           
+                                           HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/XWUeChVZqgw" frameborder="0" allowfullscreen></iframe>')
+                                           
+                                         ),
+                                         
+                                         # This is the main page that will appear on the right of the web.
+                                         mainPanel(
+                                           tabsetPanel(type = "tabs",
+                                                       tabPanel("map", leafletOutput('leaf.map')),
+                                                       tabPanel('price.rating', plotOutput('rate')),
+                                                       tabPanel('Overall Rating and Average Price', tableOutput('table1'),
+                                                                tableOutput('table2'))
+                                           )
+                                         )
+                                       )
+                                     )
+                                     #dataTableOutput("table")
+                            ),
+                            tabPanel("Question 2"
+                                     # fluidRow(
+                                     #   column(6,
+                                     #          includeMarkdown("about.md")
+                                     #   ),
+                                     #   column(3,
+                                     #          img(class="img-polaroid",
+                                     #              src=paste0("http://upload.wikimedia.org/",
+                                     #                         "wikipedia/commons/9/92/",
+                                     #                         "1919_Ford_Model_T_Highboy_Coupe.jpg")),
+                                     #          tags$small(
+                                     #            "Source: Photographed at the Bay State Antique ",
+                                     #            "Automobile Club's July 10, 2005 show at the ",
+                                     #            "Endicott Estate in Dedham, MA by ",
+                                     #            a(href="http://commons.wikimedia.org/wiki/User:Sfoskett",
+                                     #              "User:Sfoskett")
+                                     #          )
+                                     #   )
+                                     # )
+                            )
+                 )
+)
+
+server <- function(input, output, session) {
+  output$plot <- renderPlot({
+    plot(cars, type=input$plotType)
+  })
+  
+  output$summary <- renderPrint({
+    summary(cars)
+  })
+  
+  # output$table <- renderDataTable({
+  #   datatable(cars)
+  # })
+}
+
+shinyApp(ui = ui, server = server)
+
