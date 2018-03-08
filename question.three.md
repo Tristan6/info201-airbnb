@@ -1,4 +1,4 @@
-# Description:
+# Description and Analysis:
 This visualization compares the room type of the listing with the overall satisfaction rating that the listing received. It also shows basic information regarding the number of reviews a listing received. Each data point is an individual listing in the selected city. The color of the data point indicates the number of reviews that listing has received. Because the data has many repeated values and discrete x and y variables, it is organized into a jitter plot. This is different than a traditional scatter plot because instead of overlapping repeating values in the data, they are organized into small groups for each room type and value pair. This enables the user to effectively see the frequency of the room type and value pairs for the selected city and year.  
 
 
