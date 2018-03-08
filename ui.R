@@ -1,11 +1,18 @@
 library('leaflet')
 
+# The ui variable that will be used to create shiny later.
 ui <- navbarPage("Airbnb Overview",
+                 
+                 # The 'home' tab that will show up first to the users.
                  tabPanel("Home",
                           includeMarkdown("home.md")
                           ),
             
+                 # The 'navbarMenu' that wil analys the first question in our group. It also include widgets and
+                 # main page for three part.
                  navbarMenu("Overall Rating & Price",
+                            
+                          # The pannel for map with widgets control for city and year.
                           tabPanel('Interactive Map',
                                    sidebarLayout(
                                      sidebarPanel(
@@ -28,6 +35,7 @@ ui <- navbarPage("Airbnb Overview",
                                    )
                           ),
                           
+                          # The pannel for plot with widgets control for city and year.
                           tabPanel('Data Plot',
                                    sidebarLayout(
                                      sidebarPanel(
@@ -50,6 +58,7 @@ ui <- navbarPage("Airbnb Overview",
                                    )
                           ),
                           
+                          # The pannel for table with widgets control for city and year.
                           tabPanel('Overall Satisfaction and Price Table',
                                    sidebarLayout(
                                      sidebarPanel(
@@ -74,6 +83,8 @@ ui <- navbarPage("Airbnb Overview",
                           )
                           )
                  ),
+                 
+                 # The panel to see the relationship between data plot and pie chart.
                  tabPanel("Inverse Squared Relationship",
                           sidebarLayout(
                             sidebarPanel(
@@ -100,6 +111,7 @@ ui <- navbarPage("Airbnb Overview",
                           )
                  ),
 
+                 # The panel to see if there relationship between room and overall satisfaction rating.
                  tabPanel("Room Type & Satisfaction",
                           sidebarLayout(
                             sidebarPanel(
@@ -125,6 +137,7 @@ ui <- navbarPage("Airbnb Overview",
 
                  ),
                  
+                 # The last panel to see if there is relationship between reivew and rating score.
                  tabPanel("Satisfaction & Reviews",
                           sidebarLayout(
                             sidebarPanel(

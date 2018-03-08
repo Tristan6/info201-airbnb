@@ -1,5 +1,8 @@
+# The function 'CreateMap' that will draw a map in our shiny app. It will take in one argumet
+# which is the data frame. It will draw using leafLet.
 CreateMap <- function(show.frame) {
   
+  # Mutate the table to add one more column 'popup.info' which can be use for infor for popup.
   show.frame <- show.frame %>% group_by(neighborhood) %>% top_n(10) %>%
     mutate(popup.info = paste0('<strong>Host id: </strong> ', host_id,
                                '<br><strong>Neighborhood:</strong> ',neighborhood,
@@ -16,6 +19,8 @@ CreateMap <- function(show.frame) {
   
 }
 
+# The function 'CreatePlot' that will create a scatter plot which take in three argument, the data
+# frame, input city and input year.
 CreatePlot <- function(show.frame, city, year) {
   
   show.frame <- show.frame %>% filter(price <= 7500) %>%
@@ -33,6 +38,8 @@ CreatePlot <- function(show.frame, city, year) {
   
 }
 
+# The function 'CreateTable1' which take in the data frame and input city as argument and it will
+# create a table for view.
 CreateTable1 <- function(show.frame, city) {
   
   nrow.num <- nrow(show.frame)
@@ -45,6 +52,8 @@ CreateTable1 <- function(show.frame, city) {
   return(sum)
 }
 
+# The function 'CreateTable2' which take in the data frame and input city as argument and it will
+# create a table for view.
 CreateTable2 <- function(show.frame, city) {
   
   nrow.num <- nrow(show.frame)

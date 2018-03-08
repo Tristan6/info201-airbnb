@@ -2,7 +2,7 @@
 
 For first step, we will draw a few maps that show the locations of each host in
 the data. To save time and the transparency of project, we will only draw the
-first 50 locations in one neighborhood for each city. From these data point on
+first 10 locations in one neighborhood for each city. From these data point on
 the map, we will see where the locations of the landlords on the map are. Then,
 we can start to get the general idea which section of the neighborhood have the
 high concentration of Airbnb landlords. We can draw meaningful conclusion from
