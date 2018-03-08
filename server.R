@@ -1,72 +1,68 @@
-library('shiny')
-library('ggplot2')
-library('dplyr')
-library('tidyr')
-library('maps')
-library('stringr')
-library('leaflet')
+source('Overall_rating.R')
 source('pre-processing.R')
+library("markdown")
 
-server <- function(input, output) {
+shinyServer(function(input, output, session) {
   
-  current <- reactive({
-    return(GetFrame(input$city, input$year))
+  current.q1.1 <- reactive({
+    return(GetFrame(input$city.q1.1, input$year.q1.1))
+
+  })
+  
+  current.q1.2 <- reactive({
+    return(GetFrame(input$city.q1.2, input$year.q1.2))
     
+  })
+  
+  current.q1.3 <- reactive({
+    return(GetFrame(input$city.q1.3, input$year.q1.3))
+    
+  })
+  
+  #### Question 1 space #####
+  
+  output$leaf.map <- renderLeaflet({
+    
+    CreateMap(current.q1.1())
   })
   
   output$rate <- renderPlot({
     
-    show.frame <- current() %>% filter(price <= 7500)
-    
-    ggplot(data = show.frame) +
-      geom_point(mapping = aes(x = overall_satisfaction, y = price, color = overall_satisfaction)) +
-      labs(title = paste(input$city, ':', input$year))
+    CreatePlot(current.q1.2(), input$city.q1.2, input$year.q1.2)
   })
   
   output$table1 <- renderTable({
     
-    show.frame <- current()
-    nrow.num <- nrow(show.frame)
-    
-    sum <- group_by(show.frame, overall_satisfaction) %>% filter(overall_satisfaction > 0) %>%
-      summarise(percent = round(n()/nrow.num*100, 2))
-    
-    names(sum)[1] <- paste0('Overall satisfaction rating (from 1 to 5)')
-    names(sum)[2] <- paste0('Percent of ', input$city, ' (%)')
-    sum
+    CreateTable1(current.q1.3(), input$city.q1.3)
   })
   
   output$table2 <- renderTable({
-    show.frame <- current()
-    nrow.num <- nrow(show.frame)
     
-    average <- filter(show.frame, bedrooms <= 4) %>%
-      group_by(bedrooms) %>% summarise(mean = mean(price))
-    
-    names(average)[2] <- paste0('Average Price of ', input$city, ' ($)')
-    average
+    CreateTable2(current.q1.3(), input$city.q1.3)
   })
   
-  output$leaf.map <- renderLeaflet({
-    
-    show.frame <- current() %>% group_by(neighborhood) %>% top_n(10) %>%
-      mutate(popup.info = paste0('<strong>Host id: </strong> ', host_id,
-                                 '<br><strong>Neighborhood:</strong> ',neighborhood,
-                                 '<br><strong>Overall satisfaction rating</strong>: ', overall_satisfaction,
-                                 '<br><strong>Bedrooms:</strong> ', bedrooms,
-                                 '<br><strong>Price ($):</strong> ', price))
-    
-    m <- leaflet(show.frame) %>% addTiles() %>%
-      setView(lng = show.frame[[1, "longitude"]], lat = show.frame[[1, "latitude"]], zoom = 12) %>%
-      addCircleMarkers(~longitude, ~latitude, popup = ~as.character(popup.info),
-                       weight = 3, radius=2, color="red", stroke = TRUE)
-      # labs(title = paste('Map for', input$city, 'in the year of', input$year, 'for Airbnb'),
-      #      subtitle = paste('this is the interactive map that would show the location of the host for
-      #      Airbnb business in the city of', input$city),
-      #      x = "Longitude (degree)",
-      #      y = "Latitude (degree)")
-    #ffa500
+  
+  
 
-    m    
-  })
-}
+  #### Question 1 space #####
+  
+  
+  
+  #### Question 2 space #####
+  
+  
+  
+  #### Question 2 space #####
+  
+  #### Question 3 space #####
+  
+
+  #### Question 3 space #####
+  
+
+  #### Question 4 space #####
+  
+ 
+  #### Question 4 space #####c
+
+})
