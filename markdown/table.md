@@ -1,4 +1,4 @@
-**Table for Overall Rating and Price**:
+## Table for Overall Rating and Price
 
 In the last part of the analysis, we can see the data table, where there is the
 breakdown of some statistic information base on the data. The users can see two

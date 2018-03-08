@@ -1,5 +1,4 @@
 # A file handling all data analysis related to question 2
-library(RColorBrewer)
 
 # Used for each visualization
 airbnb.color.palette <- c("#F16664", "#FFF6E6", "#79CCCD", "#6BB7B9", "#007D8C")
@@ -57,9 +56,6 @@ CreatePieChart <- function(processed.data) {
 
   # add percents and % symbol to labels 
   lbls <- paste0(lbls, " (", pct, "%", ")")
-  
-  # Make an RColorBrewer Palette available in R
-  pie.color <- brewer.pal(3, 'RdYlGn')
   
   # A Pie Chart with percentage and room_type labels for each wedge
   pie <- pie(slices,labels = lbls, col = airbnb.color.palette,

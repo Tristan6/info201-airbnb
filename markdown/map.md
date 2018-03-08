@@ -1,12 +1,4 @@
-Airbnb is a business that help advertising and promoting lending out houses or
-rooms to renters. They mostly target tourists who have short term stay in few
-days. It would be very crucial for landlords and renters to know about the overall
-satisfaction of in each locations in different cities to see if the price is a
-big factor in the business overall. In this section, we will try to compare
-satisfaction of the reviewers with the price per day stay of Airbnb business and
-see if there is a trend or correlation. We will divide our analysis to three section.
-
-**Concentration of the Host**:
+## Concentration of the Host
 
 For first step, we will draw a few maps that show the locations of each host in
 the data. To save time and the transparency of project, we will only draw the
