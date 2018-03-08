@@ -76,10 +76,30 @@ ui <- navbarPage("Airbnb Overview",
                           )
                  ),
                  tabPanel("Inverse Squared Relationship",
-                           
-                           plotOutput('scatter')
-                          #includeMarkdown("question.two.md")
-                           ),
+                          sidebarLayout(
+                            sidebarPanel(
+                              # Input: Select the random distribution type through radio buttons function.
+                              radioButtons("city.q2", "Cities:",
+                                           c('Chicago' = 'chicago', 'Miami' = 'miami', 'New York' = 'new_york',
+                                             'San Diego' = 'san_diego', 'Seattle' = 'seattle')
+                              ),
+                              br(),
+                              
+                              # Input: select input for the number of observations year in the data to generate.
+                              selectInput("year.q2", "Years (from 2015 to 2017:",
+                                          c('2015'=2015, '2016'=2016, '2017'=2017)
+                              )
+                            ),
+                            
+                            # This is the main page that will appear on the right of the web.
+                            mainPanel(
+                              plotOutput('scatter'),
+                              br(),
+                              plotOutput('pie'),
+                              includeMarkdown("question.two.md")
+                            )
+                          )
+                 ),
                  tabPanel("Room Type & Satisfaction"
                           
                           

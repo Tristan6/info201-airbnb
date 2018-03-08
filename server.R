@@ -1,9 +1,13 @@
 source('Overall_rating.R')
 source('pre-processing.R')
+source('inverse-squared.R')
 library("markdown")
 
 shinyServer(function(input, output, session) {
   
+
+
+
   ##### Question 1 #####
   current.q1.1 <- reactive({
     return(GetFrame(input$city.q1.1, input$year.q1.1))
@@ -12,6 +16,7 @@ shinyServer(function(input, output, session) {
   current.q1.2 <- reactive({
     return(GetFrame(input$city.q1.2, input$year.q1.2))
     
+
   })
   
   current.q1.3 <- reactive({
@@ -31,16 +36,29 @@ shinyServer(function(input, output, session) {
     CreateTable1(current.q1.3(), input$city.q1.3)
   })
   
-  output$table2 <- renderTable({
+    output$table2 <- renderTable({
     CreateTable2(current.q1.3(), input$city.q1.3)
   })  
   
   #### Question 2 #####
-  
-  
-  
 
-  #### Question 2 space #####
+   inverse.squared <- reactive({
+   return(CreateRatingsFactor(current.q2()))
+   })
+  
+  current.q2 <- reactive({
+    return(GetFrame(input$city.q2, input$year.q2))
+  })
+  
+  # This is a scatterplot
+  output$scatter <- renderPlot({
+    CreatePriceReviewScatter(inverse.squared())
+  })
+  
+  output$pie <- renderPlot({
+    CreatePieChart(inverse.squared())
+  })
+
   
   #### Question 3 space #####
   
