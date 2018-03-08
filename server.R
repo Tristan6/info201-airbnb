@@ -1,4 +1,6 @@
 source('pre-processing.R')
+
+source('room_type&satisfaction.R')
 library("markdown")
 
 shinyServer(function(input, output, session) {
@@ -22,6 +24,9 @@ shinyServer(function(input, output, session) {
   
   #### Question 3 space #####
   
+  output$jitter <- renderPlot({
+    CreateJitter(GetRoomTypeVsSatisfaction(current()))
+  })
 
   #### Question 3 space #####
   
