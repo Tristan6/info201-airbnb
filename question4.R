@@ -25,7 +25,8 @@ pie <- ggplot(data = question4.data, mapping = aes(x = factor(1), fill = factor(
 
 # scatter plot apping overall satisfcation to number of reviews
 scatter.reviews.sat <- ggplot(data = question4.data) + 
-  geom_point(mapping = aes(x = overall_satisfaction, y = reviews), position = "jitter")
+  geom_point(mapping = aes(x = overall_satisfaction, y = reviews), position = "jitter") + 
+  ylab("number of reviews")
 
 # it is clear that listings with higher ratings tend to have a lot more reviews
 # it is possible that these listings might have more "fake reviews" that compensate s
