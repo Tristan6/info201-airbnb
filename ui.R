@@ -23,15 +23,14 @@ ui <- navbarPage("Airbnb Overview",
                           sidebarLayout(
                             sidebarPanel(
                               # Input: Select the random distribution type through radio buttons function.
-                              radioButtons("city", "Cities:",
+                              radioButtons("city.q2", "Cities:",
                                            c('Chicago' = 'chicago', 'Miami' = 'miami', 'New York' = 'new_york',
                                              'San Diego' = 'san_diego', 'Seattle' = 'seattle')
                               ),
-                              
                               br(),
                               
                               # Input: select input for the number of observations year in the data to generate.
-                              selectInput("year", "Years (from 2015 to 2017:",
+                              selectInput("year.q2", "Years (from 2015 to 2017:",
                                           c('2015'=2015, '2016'=2016, '2017'=2017)
                               )
                             ),

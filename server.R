@@ -4,13 +4,8 @@ library("markdown")
 
 shinyServer(function(input, output, session) {
   
-  current <- reactive({
-    return(GetFrame(input$city, input$year))
-    
-  })
-  
   inverse.squared <- reactive({
-    return(CreateRatingsFactor(current()))
+    return(CreateRatingsFactor(current.q2()))
   })
   
   #### Question 1 space #####
@@ -21,6 +16,11 @@ shinyServer(function(input, output, session) {
   
   #### Question 2 space #####
   
+  current.q2 <- reactive({
+    return(GetFrame(input$city.q2, input$year.q2))
+  })
+  
+  # This is a scatterplot
   output$scatter <- renderPlot({
     CreatePriceReviewScatter(inverse.squared())
   })

@@ -1,8 +1,11 @@
 # A file handling all data analysis related to question 2
 library(RColorBrewer)
 
+# Used for each visualization
 airbnb.color.palette <- c("#F16664", "#FFF6E6", "#79CCCD", "#6BB7B9", "#007D8C")
 
+# Takes the reactive function from the server as input and tailors the data set towards this 
+# analysis question.
 CreateRatingsFactor <- function(reactive.data) {
   processed.data <- reactive.data
   
@@ -18,19 +21,25 @@ CreateRatingsFactor <- function(reactive.data) {
   return(processed.data)
 }
 
+# Takes as input a reactive function (which returns the above function) and uses the data set to 
+# return a scatterplot of price and review data, colored by the room type.
 CreatePriceReviewScatter <- function(processed.data) {
   scatter.data <- processed.data
   
   # This is a scatterplot of reviews and price colored by the room_type
   price.review.scatter <- ggplot(data = scatter.data) +
     geom_point(mapping = aes(x = reviews, y = price, color = room_type)) +
-    scale_color_brewer(palette = 'RdYlGn') +
+    scale_color_manual(values = airbnb.color.palette) +
     scale_y_continuous(breaks = c(0, 1000, 2000, 3000, 4000)) +
-    labs(title = paste('Inverse Squared Property: Reviews and Price'))
+    labs(title = paste('Inverse Squared Relationship: Reviews vs Price'), 
+         x = 'number of reviews', y = 'price per night (in dollars)')
   
   return(price.review.scatter)
 }
 
+# Takes as input a reactive function (which returns the above function) and uses the data set to 
+# return a pie chart of with percentages of each room type in the selected city and year adding
+# clarity to the previous visualization.
 CreatePieChart <- function(processed.data) {
   pie.data <- processed.data %>% 
     select(room_type)

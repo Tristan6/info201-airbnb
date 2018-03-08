@@ -1,24 +1,7 @@
-### Conclusions from Analysis of Reviews and Price
+### Analysis of Reviews and Price
 
-One of the most interesting conclusions found from analyzing the reviews and price columns was their unusual relationship.
-Regardless of what city or year is chosen, the data very closely follows an inverse squared relationship. This is relationship
-is sometimes called the inverse-squared law and is most commonly associated with force of gravity and illumination.
+This section analyzes the relationship between the number of reviews and price. The number of reviews is a proxy (representative of) the amount of people that have stayed at a listed room on Airbnb. Price is the most current price of the listing as posted on Airbnb. Room type refers to the type of room that the listing offered. These are used to create a scatterplot. Each point on this scatterplot represents a listing on Airbnb and is colored based on the room type of that specific listing. The types of rooms include: Entire home/apt, Private room, and Shared room.
 
-Less related to the relationship of the axis, the majority of the ratings (overall_satisfaction)
-were five stars. This is important because the less expensive listings had the most amount of reviews (meaning people visited frequently)
-though these listings still managed to get a five star rating. One conclusion is that hospitality is more important to this business
-than is luxury. Another conclusion could be that the customers experience 'good deal' effect, meaning they feel like they are getting
-a good price for the room they stayed in.
+In addition to the scatterplot there is a pie chart below which attempts to give more insight into the distribution of the different room types. As such it is colored with the same color scheme. It also labels each of the wedges with the associated room type and percent of that room type out amount of total room listings for the specific city and year chosen.
 
-Jimmy's Youtube Embed:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XWUeChVZqgw" frameborder="0" allowfullscreen></iframe>
-
-Adharsh may want this:
-HandleMissingData <- function(year) {
-  if(year == 2017) {
-    na.message <- "In 2017 the minstay column has missing data. Please choose a different year"
-    return(na.message)
-  } else {
-    return("")
-  }
-}
+One of the most interesting conclusions found from analyzing the reviews and price columns was their unusual relationship. Regardless of what city or year is chosen, the data very closely follows an inverse square relationship. This is relationship is sometimes called the inverse-square law and is most commonly associated with force of gravity and illumination. The fact that the relationship of this data (based on human interactions) closely follows a relationship commonly seen in physics speaks to the accuracy of the data. As the price of a listing goes down, the number of reviews skyrockets which suggests that more people are willing to stay in that room. In addition, there are no listings with both a high price and a high number of reviews.
