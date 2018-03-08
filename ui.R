@@ -7,7 +7,6 @@ ui <- navbarPage("Airbnb Overview",
             
                  # this is jimmys
                  navbarMenu("Overall Rating & Price",
-                          
                           tabPanel('Interactive Map',
                                    sidebarLayout(
                                      sidebarPanel(
@@ -75,7 +74,6 @@ ui <- navbarPage("Airbnb Overview",
                                    )
                           )
                           )
-                            
                  ),
                  tabPanel("Inverse Squared Relationship",
                            
