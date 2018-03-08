@@ -1,4 +1,4 @@
-**Plot of Overall Rating and Price**:
+## Plot of Overall Rating and Price
 
 In the data plot, the value of the overall rating vs. the price per day would
 produce good description of the trend of the Airbnb business. From the plot, we

@@ -68,8 +68,8 @@ ui <- navbarPage("Airbnb Overview",
                                        )
                                      ),
                                      
-                                     mainPanel('',includeMarkdown("markdown/table.md") , tableOutput('table1'),
-                                                        tableOutput('table2')
+                                     mainPanel('',includeMarkdown("markdown/table.md") , h4('Table 1: Overall Rating and Percentage.'), tableOutput('table1'),
+                                                        h4('Table 2: Bedrooms and Average Price'), tableOutput('table2')
                                    )
                           )
                           )
