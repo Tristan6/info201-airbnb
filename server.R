@@ -5,9 +5,9 @@ library("markdown")
 shinyServer(function(input, output, session) {
   
   current <- reactive({
-    return(GetFrame(input$city, input$year))
+    return(GetFrame(input$city.q4, input$year.q4))
   })
-  
+    
   #### Question 1 space #####
   
   #### Question 1 space #####
@@ -26,7 +26,7 @@ shinyServer(function(input, output, session) {
 
   #### Question 4 space #####
   question4.data.frame <- reactive({
-    return(getDataFrame4(curent()))
+    return(getDataFrame4(current()))
   })
   
   output$bar.graph4 <- renderPlot({

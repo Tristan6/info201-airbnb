@@ -13,8 +13,10 @@ getDataFrame4 <- function(data) {
 ## based on this plot it is clear that there a lot of reviews with 5 stars
 ## how realistic is it that there are so many 5 star reviews?
 getBarGraphReviews <- function(question4.data) {
-  bar.reviews.sat <- ggplot(data = question4.data) +
-  geom_bar(mapping = aes(x = overall_satisfaction, fill = reviews))
+    bar.reviews.sat <- ggplot(data = question4.data) +
+    geom_bar(mapping = aes(x = overall_satisfaction, fill = reviews)) + 
+    ylab("Number of listings") + 
+    labs(title = "Number of Listings with Overall Satisfaction Rating")
   return(bar.reviews.sat)
 }
 
@@ -27,15 +29,17 @@ getPieReviews <- function(question4.data) {
     coord_polar(theta="y") + 
     xlab("") + 
     ylab("Number of Reviews") + 
-    labs(title = "Percentage of reviews with five star ratings", fill = "Has Five Star Rating")
+    labs(title = "Overall Satisfaction Equal and Not Equal to 5", fill = "Has Five Star Rating") 
   return(pie)
 }
 
 # scatter plot apping overall satisfcation to number of reviews
 getScatterReviews <- function(question4.data) {
-scatter.reviews.sat <- ggplot(data = question4.data) + 
-  geom_point(mapping = aes(x = overall_satisfaction, y = reviews), position = "jitter") + 
-  ylab("number of reviews")
+  scatter.reviews.sat <- ggplot(data = question4.data) + 
+    geom_point(mapping = aes(x = overall_satisfaction, y = reviews), position = "jitter") + 
+    ylab("number of reviews") + 
+    labs(title = "Number of Reviews vs. Overall Satisfaction")
+  return(scatter.reviews.sat)
 }
 
 # it is clear that listings with higher ratings tend to have a lot more reviews
