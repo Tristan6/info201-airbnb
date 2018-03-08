@@ -5,7 +5,6 @@ ui <- navbarPage("Airbnb Overview",
                           includeMarkdown("home.md")
                           ),
             
-                 # this is jimmys
                  navbarMenu("Overall Rating & Price",
                           tabPanel('Interactive Map',
                                    sidebarLayout(
@@ -96,15 +95,36 @@ ui <- navbarPage("Airbnb Overview",
                               plotOutput('scatter'),
                               br(),
                               plotOutput('pie'),
-                              includeMarkdown("question.two.md")
+                              includeMarkdown("markdown/question.two.md")
                             )
                           )
                  ),
-                 tabPanel("Room Type & Satisfaction"
-                          
-                          
-                          #includeMarkdown("question.three.md")
+
+                 tabPanel("Room Type & Satisfaction",
+                          sidebarLayout(
+                            sidebarPanel(
+                              # Input: Select the random distribution type through radio buttons function.
+                              radioButtons("city.q3", "Cities:",
+                                           c('Chicago' = 'chicago', 'Miami' = 'miami', 'New York' = 'new_york',
+                                             'San Diego' = 'san_diego', 'Seattle' = 'seattle')
+                              ),
+                              
+                              br(),
+                              
+                              # Input: select input for the number of observations year in the data to generate.
+                              selectInput("year.q3", "Years (from 2015 to 2017:",
+                                          c('2015'=2015, '2016'=2016, '2017'=2017)
+                              )
+                            ),
+
+                            mainPanel(
+                              plotOutput('jitter'),
+                              includeMarkdown("markdown/question.three.md")
+                            )
+                          )
+
                  ),
+                 
                  tabPanel("Minimum Stay and Reviews"
                           
                           
